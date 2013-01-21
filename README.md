@@ -116,7 +116,7 @@ The typical [Enhancement Chain](http://stanbol.apache.org/docs/trunk/components/
 
 __Note__: As of now the [Named Entity Linking Engine](http://stanbol.apache.org/docs/trunk/components/enhancer/engines/namedentitytaggingengine) SHOULD NOT be used for Japanese Texts as it does not use Japanese specific processing of the Entity Labels. It is recommended to use the [Entityhub Linking Engine](http://stanbol.apache.org/docs/trunk/components/enhancer/engines/entityhublinking) and filter results based on the types of the Entities.
 
-### Configuring your Stanbol Instance for Japanese
+## Configuring your Stanbol Instance for Japanese
 
 There are several options how this can be done.
 
