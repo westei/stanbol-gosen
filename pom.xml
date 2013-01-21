@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.apache.stanbol</groupId>
+		<artifactId>stanbol-parent</artifactId>
+		<version>3</version>
+	</parent>
+
+	<groupId>at.salzburgresearch.stanbol</groupId>
+	<artifactId>stanbol-gosen-parent</artifactId>
+	<version>1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Apache Stanbol / Lucene Gosen Integration</name>
+	<description>
+    Provides integration between Lucene Gosen (Analyzers for Japanese) and
+    Apache Stanbol.
+  </description>
+
+	<inceptionYear>2013</inceptionYear>
+  
+  <licenses>
+    <license> <!-- The license used by Lucene-Gosen -->
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+      <distribution>repo</distribution>
+    </license>
+    <license> <!-- The license preferred by this code -->
+      <name>Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+  
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+      <!-- Lucene Gosen -->
+      <dependency>
+        <groupId>com.google.code</groupId>
+        <artifactId>lucene-gosen-naist-chasen</artifactId>
+        <version>2.0.2</version> <!-- for Solr 3.6 as used by Apache Stanbol 0.11 -->
+      </dependency>
+      
+      <!-- Apache Stanbol-->
+      <dependency>
+        <groupId>org.apache.stanbol</groupId>
+        <artifactId>org.apache.stanbol.commons.solr.core</artifactId>
+        <version>0.11.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.stanbol</groupId>
+        <artifactId>org.apache.stanbol.enhancer.servicesapi</artifactId>
+        <version>0.10.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.stanbol</groupId>
+        <artifactId>org.apache.stanbol.enhancer.nlp</artifactId>
+        <version>0.10.0-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.stanbol</groupId>
+        <artifactId>org.apache.stanbol.enhancer.core</artifactId>
+        <version>0.10.0-SNAPSHOT</version>
+      </dependency>
+      <dependency> <!-- depend on the module the config is for -->
+        <groupId>org.apache.stanbol</groupId>
+        <artifactId>org.apache.stanbol.enhancer.engines.entitylinking.labeltokenizer.lucene</artifactId>
+        <version>0.10.0-SNAPSHOT</version>
+      </dependency>
+      
+      <!-- Test Dependencies -->
+      <dependency>
+        <groupId>org.apache.stanbol</groupId>
+        <artifactId>org.apache.stanbol.enhancer.test</artifactId>
+        <version>0.10.0-SNAPSHOT</version>
+        <scope>test</scope>
+      </dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>lucene-gosen-naist-chasen</module>
+		<module>labeltokenizer-gosen</module>
+		<module>gosen-nlp-engine</module>
+    <module>gosen-bundlelist</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

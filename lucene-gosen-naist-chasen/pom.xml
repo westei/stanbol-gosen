@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+  <!--
+    Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements. See the
+    NOTICE file distributed with this work for additional information regarding copyright ownership. The ASF
+    licenses this file to You under the Apache License, Version 2.0 (the "License"); you may not use this file
+    except in compliance with the License. You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+    CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing
+    permissions and limitations under the License.
+  -->
+<project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>at.salzburgresearch.stanbol</groupId>
+    <artifactId>stanbol-gosen-parent</artifactId>
+    <version>1-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
+
+  <groupId>at.salzburgresearch.stanbol</groupId>
+  <artifactId>at.salzburgresearch.stanbol.commons.solr.extras.gosen</artifactId>
+  <version>0.11.0-SNAPSHOT</version>
+  <packaging>bundle</packaging>
+
+  <name>Stanbol Extension: Lucene Gosen Bundle including the naist chasen dictionary</name>
+  <description>This provides an Bundle for the Lucene smart analyzers for Japanese.
+    If Bundle adds Lucene Gosen support to the Apache Stanbol Commons Solr modules
+    It includes the Naist Chasen dictionary.</description>
+
+  <licenses>
+    <license> <!-- The license used by Lucene-Gosen -->
+      <name>GNU Lesser General Public License</name>
+      <url>http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt</url>
+      <distribution>repo</distribution>
+    </license>
+    <license> <!-- The license preferred by this code -->
+      <name>Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>
+      scm:git:https://github.com/westei/stanbol-gosen.git
+    </connection>
+    <developerConnection>
+      scm:git:ssh://github.com/westei/stanbol-gosen
+    </developerConnection>
+    <url>https://github.com/westei/stanbol-gosen/</url>
+  </scm>
+
+  <build>
+    <!-- make it an OSGi bundle -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Embed-Dependency>lucene-gosen-naist-chasen</Embed-Dependency>
+            <Import-Package>
+              org.apache.solr.analysis;version="[3.6.1,4.0.0)",
+              *
+            </Import-Package>
+            <Export-Package>
+              org.apache.solr.analysis.gosen;version=3.6.1
+            </Export-Package>
+            <!-- used instead of Export-Package to preserve the jars -->
+            <_exportcontents>
+              org.apache.lucene.analysis.gosen.*;version=3.6.1,
+              net.java.sen.*;version=2.0.2
+            </_exportcontents>
+            <!--
+             The DataFileProider is used to provide resources for the Solr
+             Components
+             -->
+            <Data-Files>datafiles</Data-Files>
+            <Data-Files-Priority>-100</Data-Files-Priority>
+          </instructions>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-scr-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.rat</groupId>
+        <artifactId>apache-rat-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code</groupId>
+      <artifactId>lucene-gosen-naist-chasen</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.stanbol</groupId>
+      <artifactId>org.apache.stanbol.commons.solr.core</artifactId>
+    </dependency>
+  </dependencies>
+
+  <repositories> <!-- local maven repository providing the lucene-gosen analyzer -->
+    <repository>
+      <id>reasoners-hermit-embedded</id>
+      <url>file://localhost/${project.basedir}/local-maven-repo</url>
+      <releases>
+        <updatePolicy>always</updatePolicy>
+      </releases>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
+</project>
