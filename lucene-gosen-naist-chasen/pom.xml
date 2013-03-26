@@ -16,13 +16,13 @@
   <parent>
     <groupId>at.salzburgresearch.stanbol</groupId>
     <artifactId>stanbol-gosen-parent</artifactId>
-    <version>1-SNAPSHOT</version>
+    <version>1</version>
     <relativePath>..</relativePath>
   </parent>
 
   <groupId>at.salzburgresearch.stanbol</groupId>
   <artifactId>at.salzburgresearch.stanbol.commons.solr.extras.gosen</artifactId>
-  <version>0.11.0-SNAPSHOT</version>
+  <version>0.11.0</version>
   <packaging>bundle</packaging>
 
   <name>Stanbol Extension: Lucene Gosen Bundle including the naist chasen dictionary</name>
