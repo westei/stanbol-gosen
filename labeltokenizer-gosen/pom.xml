@@ -29,7 +29,7 @@
 
   <groupId>at.salzburgresearch.stanbol</groupId>
   <artifactId>at.salzburgresearch.stanbol.enhancer.engines.entitylinking.labeltokenizer.gosen</artifactId>
-  <version>0.10.0</version>
+  <version>1.0.0</version>
   <packaging>bundle</packaging>
 
   <name>Apache Stanbol Enhancer EntityLinking LabelTokenizer Gosen for Japanese </name>
